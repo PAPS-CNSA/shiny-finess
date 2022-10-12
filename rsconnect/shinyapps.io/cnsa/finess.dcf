@@ -5,9 +5,9 @@ account: cnsa
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 7280499
-bundleId: 6393341
+bundleId: 6394845
 url: https://cnsa.shinyapps.io/finess/
-when: 1665528067.31806
-lastSyncTime: 1665528067.31807
+when: 1665570032.31247
+lastSyncTime: 1665570032.31249
 asMultiple: FALSE
 asStatic: FALSE

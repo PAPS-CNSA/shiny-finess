@@ -47,17 +47,17 @@ shinyUI(
                               checkboxGroupInput("detail_struct_pha", label = h3("Choix des structures à comptabiliser"), 
                                   choices = c(
                                     "Tous"="All",
-                                    "ESPO" = "198","ESAT" = "246","ESRP" = "249","FHAH" = "252","FPAH" = "253",
-                                    "MAS" = "255","EEAH" = "379","FVAH" = "382","EATAH" = "395","FAM" = "437","EAM" = "448",
-                                    "EANM" = "449","CR"= "461","Lieux de Vie" = "462","UEROS" = "464","SAMSAH" = "445","SAVS" = "446"
+                                    "198 - ESPO" = "198","246 - ESAT" = "246","249 - ESRP" = "249","252 - FHAH" = "252","253 - FPAH" = "253",
+                                    "255 - MAS" = "255","379 - EEAH" = "379","382 - FVAH" = "382","395 - EATAH" = "395","437 - FAM" = "437","448 - EAM" = "448",
+                                    "449 - EANM" = "449","461 - CR"= "461","462 - Lieux de Vie" = "462","464 - UEROS" = "464","445 - SAMSAH" = "445","446 - SAVS" = "446"
                                   ))
                         ),
                         conditionalPanel(condition = "input.ch_struct == 'PA'",
                                          checkboxGroupInput("detail_struct_pa", label = h3("Choix des structures à comptabiliser"), 
                                                             choices = c(
-                                                              "Tous"="All","RA" = "202","AJA" = "207",
-                                                              "EEPA" = "381","EHPAD" = "500","EHPA perc crédit AM" = "501",
-                                                              "EHPA ne perc pas crédit Am" = "502"
+                                                              "Tous"="All","202 - RA" = "202","207 - AJA" = "207",
+                                                              "381 - EEPA" = "381","500 - EHPAD" = "500","501 - EHPA perc crédit AM" = "501",
+                                                              "502 - EHPA ne perc pas crédit Am" = "502"
                                                             ))
                         ),
                         conditionalPanel(condition = "input.ch_struct == 'PH-E'",
@@ -126,17 +126,17 @@ shinyUI(
                                                checkboxGroupInput("dep_detail_struct_pha", label = h3("Choix des structures à comptabiliser"), 
                                                                   choices = c(
                                                                     "Tous"="All",
-                                                                    "ESPO" = "198","ESAT" = "246","ESRP" = "249","FHAH" = "252","FPAH" = "253",
-                                                                    "MAS" = "255","EEAH" = "379","FVAH" = "382","EATAH" = "395","FAM" = "437","EAM" = "448",
-                                                                    "EANM" = "449","CR"= "461","Lieux de Vie" = "462","UEROS" = "464","SAMSAH" = "445","SAVS" = "446"
+                                                                    "198 - ESPO" = "198","246 - ESAT" = "246","249 - ESRP" = "249","252 - FHAH" = "252","253 - FPAH" = "253",
+                                                                    "255 - MAS" = "255","379 - EEAH" = "379","382 - FVAH" = "382","395 - EATAH" = "395","437 - FAM" = "437","448 - EAM" = "448",
+                                                                    "449 - EANM" = "449","461 - CR"= "461","462 - Lieux de Vie" = "462","464 - UEROS" = "464","445 - SAMSAH" = "445","446 - SAVS" = "446"
                                                                   ))
                               ),
                               conditionalPanel(condition = "input.dep_ch_struct == 'PA'",
                                                checkboxGroupInput("dep_detail_struct_pa", label = h3("Choix des structures à comptabiliser"), 
                                                                   choices = c(
                                                                     "Tous"="All","RA" = "202","AJA" = "207",
-                                                                    "EEPA" = "381","EHPAD" = "500","EHPA perc crédit AM" = "501",
-                                                                    "EHPA ne perc pas crédit Am" = "502"
+                                                                    "381 - EEPA" = "381","500 - EHPAD" = "500","501 - EHPA perc crédit AM" = "501",
+                                                                    "502 - EHPA ne perc pas crédit Am" = "502"
                                                                   ))
                               ),
                               conditionalPanel(condition = "input.dep_ch_struct == 'PH-E'",
