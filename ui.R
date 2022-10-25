@@ -55,7 +55,7 @@ shinyUI(
                         conditionalPanel(condition = "input.ch_struct == 'PA'",
                                          checkboxGroupInput("detail_struct_pa", label = h3("Choix des structures à comptabiliser"), 
                                                             choices = c(
-                                                              "Tous"="All","202 - RA" = "202","207 - AJA" = "207",
+                                                              "Tous"="All","202 - RA" = "202","207 - AJA" = "207","362 - ESLD" = "362",
                                                               "381 - EEPA" = "381","500 - EHPAD" = "500","501 - EHPA perc crédit AM" = "501",
                                                               "502 - EHPA ne perc pas crédit Am" = "502"
                                                             ))
@@ -108,8 +108,25 @@ shinyUI(
                                    "Le tableau présente le nombre de places comptabilisées dans les structures sélectionnées, ventilées par département."),
                                     hr(),
                                    dataTableOutput("vue_nat_dep")   
-                              )
+                              ),
+                                  tabPanel("Type d'Activité", 
+                                     fluidRow(
+                                       h3("Nombre de places selon le type d'activités / les modalités d'accueil de l'établissement"),
+                                       hr(),
+                                       "Le tableau présente le nombre de places comptabilisées (places effectives), selon les modalités d'accueil de l'établissement."),
+                                     hr(),
+                                     dataTableOutput("vue_nat_ta")
+                                  ),
+                                  tabPanel("Type de Dispositifs", 
+                                     fluidRow(
+                                       h3("Nombre de places selon le dispositfs"),
+                                       hr(),
+                                       "Le tableau présente le nombre places dispositifs"),
+                                     hr(),
+                                     dataTableOutput("vue_nat_disp")
                             )
+                             )
+                            
                           )
                       )),
                tabPanel("Vue par Département",
