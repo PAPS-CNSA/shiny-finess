@@ -38,9 +38,11 @@ shinyUI(
                   sidebarLayout(
                     sidebarPanel(
                       fluidRow(
+                        radioButtons("ch_places", label = h3("Choix du type de décompte"),
+                                     choices = list("En places" = "places", "En Nombre de structures avec nombre de places positives" = "structures_places", "En nombre de structures recensées dans la base"="structures_pres"), selected = "places"),
                         radioButtons("ch_struct", label = h3("Champ de la structure envisagée"), 
                                            choices = list("Adultes Handicapés" = "PH-A", "Enfants Handicapés" = "PH-E", "Personnes Âgées" = "PA"),
-                                           selected = 1),
+                                           selected = "PH-A"),
                         hr(),
 
                         conditionalPanel(condition = "input.ch_struct == 'PH-A'",

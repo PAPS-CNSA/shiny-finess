@@ -6,16 +6,16 @@ output_national <- function(annee1, annee2, base, variable, nom_de_sortie,type_c
   
   for (annee in (annee1:annee2)) {
     tempo <-  base[[annee]]
-    capacite <- tempo %>% filter(indsupinst=="N") %>% group_by_at(variable) %>% summarise(capacite = sum(capinstot, na.rm=T), nb_struct = n())
+    if (type_compte == "places") capacite <- tempo %>% group_by_at(variable) %>% summarise(capacite = sum(capinstot, na.rm=T))
+    if (type_compte == "structures_pres") capacite <- tempo %>% group_by_at(variable) %>% summarise(capacite = n_distinct(nofinesset))
+    if (type_compte == "structures_places") capacite <- tempo %>% filter(indsupinst=="N") %>% group_by_at(variable) %>% summarise(capacite = n_distinct(nofinesset))
+    
     if (annee==annee1) {
-      if (type_compte == "places") nat_sta = capacite[,c(variable, "capacite")]
-      if (type_compte == "structures") nat_sta = capacite[,c(variable, "nb_struct")]
+      nat_sta <- capacite
       colnames(nat_sta) <- c("variable", annee)
     } else {
-      if (type_compte == "places") tempo = capacite[,c(variable, "capacite")]
-      if (type_compte == "structures") tempo = capacite[,c(variable, "nb_struct")]
-      colnames(tempo) <- c("variable", annee)
-      nat_sta <- nat_sta %>% full_join(tempo, "variable")
+      colnames(capacite) <- c("variable", annee)
+      nat_sta <- nat_sta %>% full_join(capacite, "variable")
     }
 
   }

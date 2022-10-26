@@ -32,7 +32,6 @@ shinyServer(function(input, output) {
   corresp_struct_PA <- read_delim("Data/corresp_struct_PA.csv", delim = ';')
   corresp_ta_ph <- read_delim("Data/corresp_ta_ph.csv", delim = ';',locale=locale(encoding = "UTF-8"))
   
-  
   selection_categorie <- renderText({input$ch_struct})
   dep_selection_categorie <- renderText({input$dep_ch_struct})
   
@@ -101,7 +100,7 @@ shinyServer(function(input, output) {
   ########
   
   nat_heb <- reactive({
-    nat_heb <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "hebergement", "Type d'Hébergement", correspondance = corresp_hebergement)
+    nat_heb <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "hebergement", "Type d'Hébergement", correspondance = corresp_hebergement, type_compte = input$ch_places)
     dimension <- dim(nat_heb)[1]
     nat_heb <- nat_heb %>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     nat_heb <- nat_heb %>% formatStyle(
@@ -110,7 +109,7 @@ shinyServer(function(input, output) {
   })
   
   nat_sta <- reactive({
-    nat_sta <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "statut", "Statut de l'Hebergement", correspondance = corresp_statut)
+    nat_sta <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "statut", "Statut de l'Hebergement", correspondance = corresp_statut, type_compte = input$ch_places)
     dimension <- dim(nat_sta)[1]
     nat_sta <- nat_sta%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     nat_sta <- nat_sta %>% formatStyle(
@@ -119,7 +118,7 @@ shinyServer(function(input, output) {
   })
   
   nat_str <- reactive({
-    nat_str <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "categetab", "Catégorie de la structure",correspondance = table_corresp())
+    nat_str <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "categetab", "Catégorie de la structure",correspondance = table_corresp(), type_compte = input$ch_places)
     dimension <- dim(nat_str)[1]
     nat_str <- nat_str%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     nat_str <- nat_str %>% formatStyle(
@@ -128,7 +127,7 @@ shinyServer(function(input, output) {
   })
   
   nat_dep <- reactive({
-    nat_dep <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "departement", "Département")
+    nat_dep <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "departement", "Département", type_compte = input$ch_places)
     nat_dep <- nat_dep %>% left_join(liste_dep[,c("code_departement","nom_departement", "nom_region")], by = c("variable"="code_departement"))
     nat_dep <- nat_dep[,c("nom_region","nom_departement",seq(annee_de_depart,annee_de_fin))]
     colnames(nat_dep) <- c("Région","Département",seq(annee_de_depart,annee_de_fin))
@@ -136,7 +135,7 @@ shinyServer(function(input, output) {
   })
   
   nat_ta <- reactive({
-    nat_ta <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "ta_ph", "Type d'activité", correspondance = corresp_ta_ph)
+    nat_ta <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "ta_ph", "Type d'activité", correspondance = corresp_ta_ph, type_compte = input$ch_places)
     dimension <- dim(nat_ta)[1]
     nat_ta <- nat_ta%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     nat_ta <- nat_ta %>% formatStyle(
@@ -145,7 +144,7 @@ shinyServer(function(input, output) {
   })
   
   nat_disp <- reactive({
-    nat_disp <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "disp", "Comptage des dispositifs", type_compte = "structures")
+    nat_disp <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "disp", "Comptage des dispositifs", type_compte = input$ch_places)
     dimension <- dim(nat_disp)[1]
     nat_disp <- nat_disp%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     nat_disp <- nat_disp %>% formatStyle(
