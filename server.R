@@ -17,7 +17,6 @@ source("fonctions.R")
 load("Data/Base_Finess.RData")
 
 
-
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
@@ -35,7 +34,16 @@ shinyServer(function(input, output) {
   selection_categorie <- renderText({input$ch_struct})
   dep_selection_categorie <- renderText({input$dep_ch_struct})
   
-  # selection_detail <- renderText
+  # Chaque fois qu'on change de type de structures (PH-A, PA,...) on cache éventuellement certaines tables
+  observeEvent(input$ch_struct, {
+    if (selection_categorie() %in% c("PH-A","PH-E")) {
+      hideTab(inputId = "Tabs_Nat", target = "2")
+      showTab(inputId = "Tabs_Nat", target = "5")
+    } else {
+      showTab(inputId = "Tabs_Nat", target = "2")
+      hideTab(inputId = "Tabs_Nat", target = "5")    }
+  })
+  
   table_corresp <- reactive({
     table_corresp <- switch(selection_categorie(),
                             "PH-A" = corresp_struct_PH_A,
@@ -169,7 +177,7 @@ shinyServer(function(input, output) {
   ######
   
   dep_heb <- reactive({
-    dep_heb <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "hebergement", "Type d'Hébergement", correspondance =corresp_hebergement)
+    dep_heb <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "hebergement", "Type d'Hébergement", correspondance =corresp_hebergement,  type_compte = input$ch_places_dep)
     dimension <- dim(dep_heb)[1]
     dep_heb <- dep_heb %>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     dep_heb <- dep_heb %>% formatStyle(
@@ -178,7 +186,7 @@ shinyServer(function(input, output) {
   })
   
   dep_sta <- reactive({
-    dep_sta <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "statut", "Statut de l'Hebergement", correspondance = corresp_statut)
+    dep_sta <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "statut", "Statut de l'Hebergement", correspondance = corresp_statut,  type_compte = input$ch_places_dep)
     dimension <- dim(dep_sta)[1]
     dep_sta <- dep_sta%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     dep_sta <- dep_sta %>% formatStyle(
@@ -187,10 +195,19 @@ shinyServer(function(input, output) {
   })
   
   dep_str <- reactive({
-    dep_str <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "categetab", "Catégorie de la structure",correspondance = dep_table_corresp())
+    dep_str <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "categetab", "Catégorie de la structure",correspondance = dep_table_corresp(),  type_compte = input$ch_places_dep)
     dimension <- dim(dep_str)[1]
     dep_str <- dep_str%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
     dep_str <- dep_str %>% formatStyle(
+      0, target = "row",
+      fontWeight = styleEqual(dimension, "bold"))
+  })
+  
+  dep_disp <- reactive({
+    dep_disp <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "disp", "Comptage des dispositifs", type_compte = input$ch_places_dep)
+    dimension <- dim(dep_disp)[1]
+    dep_disp <- dep_disp%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
+    dep_disp <- dep_disp %>% formatStyle(
       0, target = "row",
       fontWeight = styleEqual(dimension, "bold"))
   })
@@ -201,5 +218,6 @@ shinyServer(function(input, output) {
   
   output$vue_dep_str <- renderDataTable({dep_str()})
   
-
+  output$vue_dep_disp <- renderDataTable({dep_disp()})
+  
 })

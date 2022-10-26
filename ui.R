@@ -76,9 +76,11 @@ shinyUI(
                       )
                     ),
                     mainPanel(
+                      
                         tabsetPanel(
-                            id = 'Type de variable',
-                            tabPanel("Type de Structure", 
+                            type = "tabs",
+                            id = 'Tabs_Nat',
+                            tabPanel("Type de Structure", value = 1,
                                      fluidRow(
                                        h3("Nombre de places par type de structure"),
                                        hr(),
@@ -86,7 +88,7 @@ shinyUI(
                                        hr(),
                                      dataTableOutput("vue_nat_str")
                             ),
-                              tabPanel("Type d'Hébergement", 
+                              tabPanel("Type d'Hébergement", value = 2,
                                  fluidRow(
                                    h3("Nombre de places par type d'hébergement"),
                                    hr(),
@@ -95,7 +97,7 @@ shinyUI(
                                  dataTableOutput("vue_nat_heb")
 
                               ),
-                              tabPanel("Statut", 
+                              tabPanel("Statut", value = 3,
                                  fluidRow(
                                    h3("Nombre de places selon le statut de l'établissement"),
                                    hr(),
@@ -103,7 +105,7 @@ shinyUI(
                                    hr(),
                                  dataTableOutput("vue_nat_sta")
                               ),
-                              tabPanel("Par Département", 
+                              tabPanel("Par Département", value = 4, 
                                  fluidRow(
                                    h3("Nombre de places par département"),
                                    hr(),
@@ -111,7 +113,7 @@ shinyUI(
                                     hr(),
                                    dataTableOutput("vue_nat_dep")   
                               ),
-                                  tabPanel("Type d'Activité", 
+                                  tabPanel("Type d'Activité", value = 5,
                                      fluidRow(
                                        h3("Nombre de places selon le type d'activités / les modalités d'accueil de l'établissement"),
                                        hr(),
@@ -119,7 +121,7 @@ shinyUI(
                                      hr(),
                                      dataTableOutput("vue_nat_ta")
                                   ),
-                                  tabPanel("Type de Dispositifs", 
+                                  tabPanel("Type de Dispositifs", value = 6,
                                      fluidRow(
                                        h3("Nombre de places selon le dispositfs"),
                                        hr(),
@@ -136,6 +138,8 @@ shinyUI(
                           sidebarPanel(
                             fluidRow(
                               selectInput("choix_dep","Choix du Département :", liste_dep$code_departement),
+                              radioButtons("ch_places_dep", label = h3("Choix du type de décompte"),
+                                           choices = list("En places" = "places", "En Nombre de structures avec nombre de places positives" = "structures_places", "En nombre de structures recensées dans la base"="structures_pres"), selected = "places"),
                               radioButtons("dep_ch_struct", label = h3("Champ de la structure envisagée"), 
                                            choices = list("Adultes Handicapés" = "PH-A", "Enfants Handicapés" = "PH-E", "Personnes Âgées" = "PA"),
                                            selected = 1),
@@ -198,6 +202,14 @@ shinyUI(
                                          "Le tableau présente le nombre de places comptabilisées (places effectives), selon le statut (public ou privé) de l'établissement."),
                                        hr(),
                                        dataTableOutput("vue_dep_sta")
+                              ),
+                              tabPanel("Disposif", 
+                                       fluidRow(
+                                         h3("Nombre de places selon le dispositif"),
+                                         hr(),
+                                         "Le tableau présente le nombre de places comptabilisées (places effectives), selon le dispositif de l'établissement."),
+                                       hr(),
+                                       dataTableOutput("vue_dep_disp")
                               )
                             )
                           )
