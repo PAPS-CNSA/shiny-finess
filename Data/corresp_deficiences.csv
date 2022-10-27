@@ -1,0 +1,129 @@
+﻿client;equivalent
+0;000 - Non connu
+10;010 - Tous Types de Déficiences Pers.Handicap.(sans autre indic.)
+11;011 - Handicap rare
+20;020 - Toutes Déficiences Physiques (Sans autre indication)
+30;030 - Toutes Déficiences Mentales (sans autre indication)
+40;040 - Aidants / aidés Personnes âgées
+41;041 - Aidants / aidés Maladies chroniques invalidantes
+42;042 - Aidants / aidés Tous types de handicap
+43;043 - Aidants / aidés Troubles du spectre de l'autisme
+110;110 - Déficience Intellectuelle (sans autre indication)
+111;111 - Retard Mental Profond ou Sévère
+112;112 - Débilité Profonde & Arriéré Profond
+113;113 - Débilité Profonde
+114;114 - Retard Mental Profond/Sévère/Moyen
+115;115 - Retard Mental Moyen
+116;116 - Retard Mental Moyen et Léger
+117;117 - Déficience intellectuelle
+118;118 - Retard Mental Léger
+120;120 - Déficiences Intellectuelles (SAI) avec Troubles Associés
+121;121 - Retard Mental Profond et Sévère avec Troubles Associés
+125;125 - Retard Mental Moyen avec Troubles Associés
+128;128 - Retard Mental Léger avec Troubles Associés
+200;200 - Difficultés psychologiques avec troubles du comportement
+201;201 - Déficience Intermittente de la Conscience ycompris épilepsie
+202;202 - Déficience Grave du Psychisme consécutive à lésion cérébrale
+203;203 - Déficience Grave de la Communication
+204;204 - Déficience Grave du Psychisme
+205;205 - Déficience du Psychisme (Sans Autre Indication)
+206;206 - Handicap psychique
+207;207 - Handicap cognitif spécifique
+208;208 - Handicap cognitif spécifique
+310;310 - Déficience Auditive
+311;311 - Surdité
+312;312 - Malentendant
+313;313 - Sourd et Malentendant
+317;317 - Déficiences Auditives avec troubles associés
+318;318 - Déficience auditive grave
+320;320 - Déficience Visuelle (Sans Autre Indication)
+321;321 - Cécité
+322;322 - Cécité et Malvoyance
+323;323 - Malvoyance
+324;324 - Déficience visuelle grave
+327;327 - Déficiences Visuelles avec troubles associés
+410;410 - Déficience Motrice sans Troubles Associés
+411;411 - Infirm.Mot.Cérébrale/non Cérébrale
+412;412 - Infirmité Motrice Cérébrale
+413;413 - Infirmité Motrice non Cérébrale
+414;414 - Déficience Motrice
+420;420 - Déficience Motrice avec Troubles Associés
+430;430 - Personnes nécessitant prise en charge psycho soc et san SAI
+431;431 - Affection Cardiaque
+432;432 - Diabète
+433;433 - Affection Respiratoire
+434;434 - Hémophilie
+435;435 - Insuffisance Rénale
+436;436 - Personnes Alzheimer ou maladies apparentées
+437;437 - Troubles du spectre de l'autisme
+438;438 - Cérébro lésés
+439;439 - VIH VHC
+440;440 - MND autres que Maladie Alzheimer et Maladies Apparentées
+500;500 - Polyhandicap
+501;501 - Polyhandicap Moteur et Mental.
+502;502 - Polyhandicap Auditif et Mental
+503;503 - Polyhandicap Visuel et Mental
+506;506 - Polyhandicap Mot.Mental & Sens
+510;510 - Déficience Auditive & Visuelle
+511;511 - Surdi-Cécité avec ou sans troubles associés
+512;512 - Défic.Visuelle.& Audit.Associées
+600;600 - Troubles Psychopathologiques (Sans Autre Indication)
+601;601 - Troubles Psychopatologiques Légers
+602;602 - Troubles Psychopathologiques Graves
+620;620 - Epilepsie
+700;700 - Personnes Agées (Sans Autre Indication)
+701;701 - Personnes Agées Autonomes
+702;702 - Personnes Handicapées vieillissantes
+703;703 - Personnes Agées semi-Autonomes
+704;704 - Personnes Agées non Autonomes
+707;707 - Personnes Agées semi et non-Autonomes
+710;710 - Personnes  Agées Auto et semi-Autonomes
+711;711 - Personnes Agées dépendantes
+800;800 - Enfants, adolescents et jeunes majeurs ASE
+801;801 - Enfants ASE
+802;802 - Adolescents ASE
+803;803 - Jeunes Majeurs ASE
+804;804 - Enfants, adolescents et jeunes majeurs PJJ
+805;805 - Jeunes et familles en risque d'inadaptation sociale
+806;806 - Personnes se présentant comme MNA en attente d'évaluation
+807;807 - Enfants et Adolescents avec difficultés sociales
+808;808 - Enfants d'Age Préscolaire
+809;809 - Autres Enfants, Adolescents
+810;810 - Adultes en Difficulté d'Insertion Sociale (SAI)
+811;811 - Jeunes Adultes en Difficulté
+812;812 - Femmes Seules en Difficulté
+813;813 - Personnes en difficulté avec l'alcool
+814;814 - Personnes consommant des substances psychoactives illicites
+815;815 - Sortants d'Etablissement Hospitalier ou médico-social yc psy
+816;816 - Prostituées avec ou sans Enfant
+817;817 - Vagabonds et ex-Détenus
+818;818 - Inculpés sous Contrôle judiciaire et Condamnés Libres
+819;819 - Autres Adultes en difficulté d'Insertion Sociale
+820;820 - Hommes seuls en difficulté
+821;821 - Familles en Difficulté ou sans Logement
+822;822 - Personnes et Familles Rapatriées
+823;823 - Familles Nomades
+824;824 - Personnes seules en Difficulté avec Enfant
+825;825 - Travailleurs Migrants
+826;826 - Jeunes Travailleurs
+827;827 - Personnes et Familles Réfugiées
+828;828 - Accompagnants (ou aidants)
+829;829 - Familles en difficulté et/ou femmes isolées
+830;830 - Personnes et Familles  Demandeurs d'Asile
+831;831 - Femmes Victimes de Violence
+832;832 - Personnes avec Problèmes Psychiques
+833;833 - Pers.agée, Pers.handicapée, Etudiant, Jeune travailleur
+834;834 - Patients et accompagnants (ou aidants)
+835;835 - Parents en difficulté avec enfant
+836;836 - Personnes victimes de la Traite des Êtres Humains (T.E.H.)
+840;840 - Personnes sans Domicile
+850;850 - Personnes souffrant d'addictions sans substances
+851;851 - Personnes mésusant de médicaments
+852;852 - Personnes en demande sevrage tabagique ou diminution tabac
+853;853 - Personnes souffrant d'addictions (Sans Autre Indication)
+860;860 - Majeurs  Protégés
+861;861 - Adultes avec difficultés budgétaires
+862;862 - Tuteurs Familiaux
+899;899 - Tous publics en difficulté
+990;990 - Toute Population
+999;999 - Regroupement calculs (annexe xxiv)

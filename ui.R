@@ -41,7 +41,7 @@ shinyUI(
                         radioButtons("ch_places", label = h3("Choix du type de décompte"),
                                      choices = list("En places" = "places", "En Nombre de structures avec nombre de places positives" = "structures_places", "En nombre de structures recensées dans la base"="structures_pres"), selected = "places"),
                         radioButtons("ch_struct", label = h3("Champ de la structure envisagée"), 
-                                           choices = list("Adultes Handicapés" = "PH-A", "Enfants Handicapés" = "PH-E", "Personnes Âgées" = "PA"),
+                                           choices = list("Adultes Handicapés" = "PH-A", "Enfants Handicapés" = "PH-E", "Personnes Âgées" = "PA", "Etablissements et Services Multiclientèles" = "PAPH"),
                                            selected = "PH-A"),
                         hr(),
 
@@ -51,7 +51,7 @@ shinyUI(
                                     "Tous"="All",
                                     "198 - ESPO" = "198","246 - ESAT" = "246","249 - ESRP" = "249","252 - FHAH" = "252","253 - FPAH" = "253",
                                     "255 - MAS" = "255","379 - EEAH" = "379","382 - FVAH" = "382","395 - EATAH" = "395","437 - FAM" = "437","448 - EAM" = "448",
-                                    "449 - EANM" = "449","461 - CR"= "461","462 - Lieux de Vie" = "462","464 - UEROS" = "464","445 - SAMSAH" = "445","446 - SAVS" = "446"
+                                    "449 - EANM" = "449","461 - CR"= "461","464 - UEROS" = "464","445 - SAMSAH" = "445","446 - SAVS" = "446"
                                   ))
                         ),
                         conditionalPanel(condition = "input.ch_struct == 'PA'",
@@ -70,6 +70,13 @@ shinyUI(
                                                               "194 - IDV" = "194","195 - IDA" = "195","196 - IESPESA" = "196","238 - CAFS" = "238",
                                                               "377 - EEEH" = "377","390 - EATEH" = "390","396 - FOYPH" = "396","402 - JES"= "402","182 - SESSAD" = "182",
                                                               "189 - CMPP" = "189","190 - CAMSP" = "190","221 - BAPU" = "221"
+                                                            ))
+                        ),
+                        conditionalPanel(condition = "input.ch_struct == 'PAPH'",
+                                         checkboxGroupInput("detail_struct_paph", label = h3("Choix des structures à comptabiliser"), 
+                                                            choices = c(
+                                                              "Tous"="All",
+                                                              "209 - SPASAD" = "209","354 - SSIAD" = "354","460 - SAAD" = "460","462 - Lieux de Vie" = "462"
                                                             ))
                         )
 
@@ -128,6 +135,14 @@ shinyUI(
                                        "Le tableau présente le nombre places dispositifs"),
                                      hr(),
                                      dataTableOutput("vue_nat_disp")
+                                  ),
+                                  tabPanel("Déficiences", value = 7,
+                                     fluidRow(
+                                       h3("Nombre de places selon le dispositfs"),
+                                       hr(),
+                                       "Le tableau présente le nombre places dispositifs"),
+                                     hr(),
+                                     dataTableOutput("vue_nat_defic")
                             )
                              )
                             
@@ -141,7 +156,7 @@ shinyUI(
                               radioButtons("ch_places_dep", label = h3("Choix du type de décompte"),
                                            choices = list("En places" = "places", "En Nombre de structures avec nombre de places positives" = "structures_places", "En nombre de structures recensées dans la base"="structures_pres"), selected = "places"),
                               radioButtons("dep_ch_struct", label = h3("Champ de la structure envisagée"), 
-                                           choices = list("Adultes Handicapés" = "PH-A", "Enfants Handicapés" = "PH-E", "Personnes Âgées" = "PA"),
+                                           choices = list("Adultes Handicapés" = "PH-A", "Enfants Handicapés" = "PH-E", "Personnes Âgées" = "PA","Etablissements et Services Multiclientèles" = "PAPH"),
                                            selected = 1),
                               hr(),
                               
@@ -170,6 +185,13 @@ shinyUI(
                                                                     "194 - IDV" = "194","195 - IDA" = "195","196 - IESPESA" = "196","238 - CAFS" = "238",
                                                                     "377 - EEEH" = "377","390 - EATEH" = "390","396 - FOYPH" = "396","402 - JES"= "402","182 - SESSAD" = "182",
                                                                     "189 - CMPP" = "189","190 - CAMSP" = "190","221 - BAPU" = "221"
+                                                                  ))
+                              ),
+                              conditionalPanel(condition = "input.dep_ch_struct == 'PAPH'",
+                                               checkboxGroupInput("dep_detail_struct_paph", label = h3("Choix des structures à comptabiliser"), 
+                                                                  choices = c(
+                                                                    "Tous"="All",
+                                                                    "209 - SPASAD" = "209","354 - SSIAD" = "354","460 - SAAD" = "460","462 - Lieux de Vie" = "462"
                                                                   ))
                               )
                               
@@ -203,13 +225,21 @@ shinyUI(
                                        hr(),
                                        dataTableOutput("vue_dep_sta")
                               ),
-                              tabPanel("Disposif", 
+                              tabPanel("Dispositif", 
                                        fluidRow(
                                          h3("Nombre de places selon le dispositif"),
                                          hr(),
                                          "Le tableau présente le nombre de places comptabilisées (places effectives), selon le dispositif de l'établissement."),
                                        hr(),
                                        dataTableOutput("vue_dep_disp")
+                              ),
+                              tabPanel("Déficiences",
+                                       fluidRow(
+                                         h3("Nombre de places selon le dispositfs"),
+                                         hr(),
+                                         "Le tableau présente le nombre places dispositifs"),
+                                       hr(),
+                                       dataTableOutput("vue_dep_defic")
                               )
                             )
                           )

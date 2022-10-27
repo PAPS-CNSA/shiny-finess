@@ -29,6 +29,9 @@ shinyServer(function(input, output) {
   corresp_struct_PH_A <- read_delim("Data/corresp_struct_PH_A.csv", delim = ';')
   corresp_struct_PH_E <- read_delim("Data/corresp_struct_PH_E.csv", delim = ';')
   corresp_struct_PA <- read_delim("Data/corresp_struct_PA.csv", delim = ';')
+  corresp_struct_PAPH <- read_delim("Data/corresp_struct_PAPH.csv", delim = ';')
+  corresp_defic <- read_delim("Data/corresp_deficiences.csv", delim = ';',col_types = list(col_character(),col_character()))
+  corresp_defic$client <- pad_left(corresp_defic$client,3)
   corresp_ta_ph <- read_delim("Data/corresp_ta_ph.csv", delim = ';',locale=locale(encoding = "UTF-8"))
   
   selection_categorie <- renderText({input$ch_struct})
@@ -38,6 +41,7 @@ shinyServer(function(input, output) {
   observeEvent(input$ch_struct, {
     if (selection_categorie() %in% c("PH-A","PH-E")) {
       hideTab(inputId = "Tabs_Nat", target = "2")
+      hideTab(inputId = "Tabs_Nat", target = "6")
       showTab(inputId = "Tabs_Nat", target = "5")
     } else {
       showTab(inputId = "Tabs_Nat", target = "2")
@@ -48,14 +52,16 @@ shinyServer(function(input, output) {
     table_corresp <- switch(selection_categorie(),
                             "PH-A" = corresp_struct_PH_A,
                             "PH-E" = corresp_struct_PH_E,
-                            "PA" = corresp_struct_PA)
+                            "PA" = corresp_struct_PA,
+                            "PAPH" = corresp_struct_PAPH)
   })
   
   dep_table_corresp <- reactive({
     table_corresp <- switch(dep_selection_categorie(),
                             "PH-A" = corresp_struct_PH_A,
                             "PH-E" = corresp_struct_PH_E,
-                            "PA" = corresp_struct_PA)
+                            "PA" = corresp_struct_PA,
+                            "PAPH" = corresp_struct_PAPH)
   })
   
   base_a_utiliser <- reactive({
@@ -63,7 +69,8 @@ shinyServer(function(input, output) {
       selection_categorie(),
       "PH-A" = input$detail_struct_pha,
       "PH-E" = input$detail_struct_phe, 
-      "PA" = input$detail_struct_pa)
+      "PA" = input$detail_struct_pa,
+      "PAPH" = input$detail_struct_paph)
     
     if ("All" %in% inp) {
         tempo <- table_corresp()$categetab
@@ -84,7 +91,8 @@ shinyServer(function(input, output) {
       dep_selection_categorie(),
       "PH-A" = input$dep_detail_struct_pha,
       "PH-E" = input$dep_detail_struct_phe, 
-      "PA" = input$dep_detail_struct_pa)
+      "PA" = input$dep_detail_struct_pa,
+      "PAPH" = input$dep_detail_struct_paph)
     
     if ("All" %in% inp) {
       tempo <- dep_table_corresp()$categetab
@@ -100,7 +108,7 @@ shinyServer(function(input, output) {
 
   liste_departements <- unique(base_finess_reduite[[2021]]$departement)
 
-  options_affichage_reduit <- list(searching = FALSE, dom = "Blfrtip", buttons = c('copy', 'csv', 'excel'), columnDefs = list(list(visible = F, targets = 0)))
+  options_affichage_reduit <- list(searching = FALSE, dom = "Bfrtip", buttons = c('copy', 'csv', 'excel','pdf'), columnDefs = list(list(visible = F, targets = 0)), "pageLength" = 105)
   # Remarque : on a conservé les rownames pour que la dernière ligne en gras marche, puis on les enlève dans les options globales(visible = FALSE)
 
   ########
@@ -160,6 +168,15 @@ shinyServer(function(input, output) {
       fontWeight = styleEqual(dimension, "bold"))
   })
   
+  nat_defic <- reactive({
+    nat_defic <- output_national(annee_de_depart, annee_de_fin, base_a_utiliser(), "client", "Déficiences", correspondance = corresp_defic, type_compte = input$ch_places)
+    dimension <- dim(nat_defic)[1]
+    nat_defic <- nat_defic%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
+    nat_defic <- nat_defic %>% formatStyle(
+      0, target = "row",
+      fontWeight = styleEqual(dimension, "bold"))
+  })
+  
   output$vue_nat_heb <- renderDataTable({nat_heb()})
   
   output$vue_nat_sta <- renderDataTable({nat_sta()})
@@ -171,6 +188,8 @@ shinyServer(function(input, output) {
   output$vue_nat_ta <- renderDataTable({nat_ta()})
   
   output$vue_nat_disp <- renderDataTable({nat_disp()})
+  
+  output$vue_nat_defic <- renderDataTable({nat_defic()})
   
   ######
   # VUE PAR DEPARTEMENT
@@ -212,6 +231,15 @@ shinyServer(function(input, output) {
       fontWeight = styleEqual(dimension, "bold"))
   })
   
+  dep_defic <- reactive({
+    dep_defic <- output_national(annee_de_depart, annee_de_fin, dep_base_a_utiliser(), "client", "Déficiences", type_compte = input$ch_places_dep, correspondance = corresp_defic)
+    dimension <- dim(dep_defic)[1]
+    dep_defic <- dep_defic%>% datatable(options = options_affichage_reduit,rownames = TRUE, extensions = 'Buttons') %>% formatCurrency(2:(annee_de_fin-annee_de_depart+2),currency = "", interval = 3, digits = 0, mark = " ")
+    dep_defic <- dep_defic %>% formatStyle(
+      0, target = "row",
+      fontWeight = styleEqual(dimension, "bold"))
+  })
+  
   output$vue_dep_heb <- renderDataTable({dep_heb()})
   
   output$vue_dep_sta <- renderDataTable({dep_sta()})
@@ -219,5 +247,8 @@ shinyServer(function(input, output) {
   output$vue_dep_str <- renderDataTable({dep_str()})
   
   output$vue_dep_disp <- renderDataTable({dep_disp()})
+  
+  output$vue_dep_defic <- renderDataTable({dep_defic()})
+  
   
 })

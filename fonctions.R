@@ -19,8 +19,10 @@ output_national <- function(annee1, annee2, base, variable, nom_de_sortie,type_c
     }
 
   }
+  nat_sta <- nat_sta[order(nat_sta[,"variable"]),]
   if (!is.null(correspondance)) {
     nom_test <- colnames(nat_sta)[1]
+    # if (variable == "client") correspondance$client <- pad_left(correspondance$client,2)
     nat_sta <- nat_sta %>% left_join(correspondance, by = c("variable" = variable))
     nat_sta <- nat_sta %>% select("equivalent", everything()) %>%
       select(-"variable")
@@ -52,4 +54,15 @@ reduire_dept <- function(annee1, annee2, base, critere) {
     output[[annee]] <- tempo
   }
   return(output)
+}
+
+
+pad_left <- function(x, len = 1 + max(nchar(x)), char = '0'){
+  
+  unlist(lapply(x, function(x) {
+    paste0(
+      paste(rep(char, len - nchar(x)), collapse = ''),
+      x
+    )
+  }))
 }
