@@ -28,10 +28,13 @@ output_national <- function(annee1, annee2, base, variable, nom_de_sortie,type_c
       select(-"variable")
     colnames(nat_sta) <- c(nom_de_sortie, colnames(nat_sta)[2:(annee2-annee1+2)])
   }
-  nat_sta <- nat_sta %>%
-    bind_rows(summarise(.,
-                        across(where(is.numeric), sum, na.rm=T),
-                        across(where(is.character), ~"Total")))
+  if (type_compte == "places") {
+    nat_sta <- nat_sta %>%
+      bind_rows(summarise(.,
+                          across(where(is.numeric), sum, na.rm=T),
+                          across(where(is.character), ~"Total")))  
+  }
+  
   return(nat_sta)
 }
 
