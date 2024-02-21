@@ -69,3 +69,15 @@ pad_left <- function(x, len = 1 + max(nchar(x)), char = '0'){
     )
   }))
 }
+
+extraire_tableau <- function(base_finess_reduite, annee, categ){
+  variables_a_garder <- c("nofinesset","nofinessej","region","departement","categetab","siret","mft","statutjuridique","de","ta","client","capinstot","indsupinst","statut","disp","type_pub")
+  
+  tempo <- base_finess_reduite[[as.numeric(annee)]]
+  tempo <- tempo[,variables_a_garder]
+  if ("Tous" %in% categ) {
+    tempo <- tempo[tempo$categetab %in% categ,]
+  }
+  
+  return(tempo)
+}

@@ -13,9 +13,12 @@ library(shiny)
 library(readr)
 library(tidyverse)
 library(DT)
+library(data.table)
 
 liste_dep <- read_delim("Data/departements-france.csv", delim = ";")
+corresp_struct <- fread("Data/corresp_struct.csv", sep = ';')
 
+load("Data/Base_Finess.RData")
 
 # Define UI for application that draws a histogram
 shinyUI(
@@ -78,7 +81,6 @@ shinyUI(
                                                               "209 - SPASAD" = "209","354 - SSIAD" = "354","370 - EEPH" = "370", "460 - SAAD" = "460","462 - Lieux de Vie" = "462"
                                                             ))
                         )
-
                       )
                     ),
                     mainPanel(
@@ -187,7 +189,28 @@ shinyUI(
                             )
                           )
                         )
+                            
+                      ),
+               tabPanel("Extraction Individuelle", # Création d'un nouvel onglet
+                          sidebarLayout(
+                            sidebarPanel(
+                              fluidRow(
+                                checkboxGroupInput(inputId = "Extr_categetab"  ,
+                                  label = h3("Choix des structures concernées"),
+                                  choices = c("Tous",corresp_struct$equivalent),
+                                  selected = c("")
+                                ),
+                                radioButtons(inputId = "Extr_annee",
+                                             label = h3("Choix de l'année d'extraction"),
+                                             choices = as.character(annee_de_depart:annee_de_fin)
+                                )
+                              )
+                            ),
+                            mainPanel(
+                              DTOutput("basse_extraction")
                             )
+                          )
+                        ) 
                
                
 ))

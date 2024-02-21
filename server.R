@@ -12,6 +12,7 @@ library(shinyWidgets)
 library(DT)
 library(highcharter)
 library(tidyverse)
+library(data.table)
 
 source("fonctions.R")
 load("Data/Base_Finess.RData")
@@ -27,6 +28,8 @@ shinyServer(function(input, output) {
   corresp_hebergement <- read_delim("Data/corresp_hebergement.csv", delim = ';')
   corresp_statut <- read_delim("Data/corresp_statut.csv", delim = ';')
   corresp_struct_PH_A <- read_delim("Data/corresp_struct_PH_A.csv", delim = ';')
+  corresp_struct <- fread("Data/corresp_struct.csv", sep = ';')
+  
   corresp_struct_PH_E <- read_delim("Data/corresp_struct_PH_E.csv", delim = ';')
   corresp_struct_PA <- read_delim("Data/corresp_struct_PA.csv", delim = ';')
   corresp_struct_PAPH <- read_delim("Data/corresp_struct_PAPH.csv", delim = ';')
@@ -291,6 +294,34 @@ shinyServer(function(input, output) {
     dep_tp
   })
   
+  extraction <- reactive({
+    if ("Tous" %in% input$Extr_categetab) {
+      categories_selectionnees <- "Tous"
+    } else {
+      categories_selectionnees <- corresp_struct[corresp_struct$equivalent %in% input$Extr_categetab,]$categetab
+    }
+      
+    tablo <- extraire_tableau(base_finess_reduite, input$Extr_annee, categories_selectionnees)
+    tablo <- tablo %>% datatable(rownames = FALSE, extensions = 'Buttons',
+                                 options = list(
+                                  dom = 'Bfrtip',
+                                  buttons = list(
+                                     list(extend = "excel", text = "Télécharger page actuelle", filename = "Extraction_Finess_partielle",
+                                        exportOptions = list(
+                                            modifier = list(page = "current")
+                                        )
+                                     ),
+                                     list(extend = "excel", text = "Télécharger résultats complets", filename = "Extraction_Finess_Complete",
+                                        exportOptions = list(
+                                            modifier = list(page = "all")
+                                        )
+                                     )
+                                  )
+                                )
+    )
+
+  })
+  
   output$vue_dep_heb <- renderDataTable({dep_heb()})
   
   output$vue_dep_sta <- renderDataTable({dep_sta()})
@@ -305,6 +336,6 @@ shinyServer(function(input, output) {
   
   output$vue_dep_tp <- renderDataTable({dep_tp()})
   
-  
+  output$basse_extraction <- DT::renderDT(server = FALSE, { extraction() })
   
 })
