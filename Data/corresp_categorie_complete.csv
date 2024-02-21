@@ -1,0 +1,45 @@
+﻿code_domaine;libelle_domaine;type_esms;categorie;libelle_categorie_long;libelle_categorie_court;financeur;HAPI;Commentaire
+1;Enfants Handicapés (PH);Service;182;182 - SESSAD;182 - SESSAD;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;183;183 - IME;183 - IME;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;186;186 - ITEP;186 - ITEP;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;188;188 - Etab. Enf. Ado. Poly. (EEAP);188 - EEAP;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Service;189;189 - CMPP;189 - CMPP;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Service;190;190 - CAMSP;190 - CAMSP;3-Conseil départemental + Assurance  maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;192;192 - IEM;192 - IEM;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;194;194 - Inst. Déf. Visuels (IDV);194 - IDV;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;195;195 - Inst. Déf. Auditifs (IDA);195 - IDA;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;196;196 - Inst. Ed. Sen. Sour. Ave (IESPESA);196 - IESPESA;1-Assurance maladie;Oui;
+2;Adultes Handicapés (PH);Etablissement;198;198 - Etab.Serv.Préorient. (CESPO ex-CPO);198 - ESPO;1-Assurance maladie;Oui;
+3;Personnes Agées (PA);Etablissement;202;202 - Résidence autonomie (ex, logement foyer);202 - RA;2-Conseil départemental;Oui;
+3;Personnes Agées (PA);Etablissement;207;207 - Accueil de jour autonome (AJA);207 - AJA;3-Conseil départemental + Assurance  maladie;Oui;
+4;Etablissements et Services Multiclientèles;Service;209;209 - SPASAD;209 - SPASAD;3-Conseil départemental + Assurance  maladie;Oui;
+1;Enfants Handicapés (PH);Service;221;221 - BAPU;221 - BAPU;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;238;238 - CAFS;238 - CAFS;1-Assurance maladie;Oui;
+2;Adultes Handicapés (PH);Etablissement;246;246 - ESAT;246 - ESAT;1-Assurance maladie;Oui;
+2;Adultes Handicapés (PH);Etablissement;249;249 - Etab.Serv.Réadap.Pro(ESRP ex-CRP);249 - ESRP;1-Assurance maladie;Oui;
+2;Adultes Handicapés (PH);Etablissement;252;252 - Foyer Hébergement Adultes Handicapés;252 - FHAH;2-Conseil départemental;Non;
+2;Adultes Handicapés (PH);Etablissement;253;253 - Foyer d'Accueil Polyvalent pour Adultes Handicapés;253 - FPAH;2-Conseil départemental;Non;
+2;Adultes Handicapés (PH);Etablissement;255;255 - MAS;255 - MAS;1-Assurance maladie;Oui;
+4;Etablissements et Services Multiclientèles;Service;354;354 - SSIAD;354 - SSIAD;1-Assurance maladie;Oui;
+4;Etablissements et Services Multiclientèles;Etablissement;370;370 - Etab. Expér. Pour Pers. Hand.. (EEPH);370 - EEPH;4-Pas de compétence définie a priori;Oui;comme c'est expérimental, il n'y a pas de compétence définie a priori
+1;Enfants Handicapés (PH);Etablissement;377;377 - Etab. Expér. Enf. Hand. (EEEH);377 - EEEH;4-Pas de compétence définie a priori;Oui;comme c'est expérimental, il n'y a pas de compétence définie a priori
+2;Adultes Handicapés (PH);Etablissement;379;379 - Etab. Expér .A. H. (EEAH);379 - EEAH;4-Pas de compétence définie a priori;Oui;comme c'est expérimental, il n'y a pas de compétence définie a priori
+3;Personnes Agées (PA);Etablissement;381;381 - Etab. Expér. P. A. (EEPA);381 - EEPA;4-Pas de compétence définie a priori;Oui;comme c'est expérimental, il n'y a pas de compétence définie a priori
+2;Adultes Handicapés (PH);Etablissement;382;382 - Foyer de Vie pour Adultes Handicapés;382 - FVAH;2-Conseil départemental;Non;
+1;Enfants Handicapés (PH);Etablissement;390;390 - Etab. Acc. Temp. E. H. (EATEH);390 - EATEH;3-Conseil départemental + Assurance  maladie;Oui;En pratique, on a les 3 configurations, tout dépend de la situation spécifique de l'etb. Mais s'il fallait schématiser: plutôt ARS pour les EH et plutôt CD pour les AH
+2;Adultes Handicapés (PH);Etablissement;395;395 - Etab. Acc. Temp. A. H. (EATAH);395 - EATAH;3-Conseil départemental + Assurance  maladie;Oui;En pratique, on a les 3 configurations, tout dépend de la situation spécifique de l'etb. Mais s'il fallait schématiser: plutôt ARS pour les EH et plutôt CD pour les AH
+1;Enfants Handicapés (PH);Etablissement;396;396 - Foyer  Heb. Enf. Ado. H. (FOYPH);396 - FOYPH;1-Assurance maladie;Oui;
+1;Enfants Handicapés (PH);Etablissement;402;402 - Jardin  Enfants  Spéc. (JES);402 - JES;1-Assurance maladie;Oui;
+2;Adultes Handicapés (PH);Etablissement;437;437 - FAM;437 - FAM;3-Conseil départemental + Assurance  maladie;Oui;
+2;Adultes Handicapés (PH);Service;445;445 - SAMSAH;445 - SAMSAH;3-Conseil départemental + Assurance  maladie;Oui;
+2;Adultes Handicapés (PH);Service;446;446 - Service d'Accompagnement à la Vie Sociale;446 - SAVS;2-Conseil départemental;Non;
+2;Adultes Handicapés (PH);Etablissement;448;448 - EAM;448 - EAM;3-Conseil départemental + Assurance  maladie;Oui;
+2;Adultes Handicapés (PH);Etablissement;449;449 - EANM;449 - EANM;2-Conseil départemental;Non;
+4;Etablissements et Services Multiclientèles;Service;460;460 - SAAD;460 - SAAD;2-Conseil départemental;Non;
+2;Adultes Handicapés (PH);Centre;461;461 - Ctre.Ressources (CR);461 - CR;1-Assurance maladie;Oui;
+4;Etablissements et Services Multiclientèles;Etablissement;462;462 - Lieux de vie;462 - Lieux de vie;2-Conseil départemental;Non;
+3;Personnes Agées (PA);Centre;463;463 - Centre locaux information coordonation (CLIC);463 - CLIC;2-Conseil départemental;Non;
+2;Adultes Handicapés (PH);Centre;464;464 - UEROS;464 - UEROS;1-Assurance maladie;Oui;
+3;Personnes Agées (PA);Etablissement;500;500 - EHPAD;500 - EHPAD;3-Conseil départemental + Assurance  maladie;Oui;
+3;Personnes Agées (PA);Etablissement;501;501 - EHPA perc crédit  AM;501 - EHPA perc crédit  AM;3-Conseil départemental + Assurance  maladie;Oui;
+3;Personnes Agées (PA);Etablissement;502;502 - EHPA ne perc pas crédit  AM;502 - EHPA ne perc pas crédit  AM;2-Conseil départemental;Oui;
